@@ -9,9 +9,7 @@
 ## Developer
 1. As a developer, I want to provide focus group participants with a simple, easy-to-use interface that allows them to select an item.
 2. As a developer, I want to provide my client with a solution that is scalable in the sense that they can add more products if they choose to do so with minimal development time.
-3.
-
-
+3. As a developer, I want to create a page that is aesthetically pleasing for focus group participants.
 
 
 ## Focus Group Participant
