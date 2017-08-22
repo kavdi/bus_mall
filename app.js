@@ -4,7 +4,7 @@ var allImageObjects = [];
 var previousImages = [];
 var currentImages = [];
 var grandTotalClicks = 0;
-var clickLimit = 5;
+var clickLimit = 10;
 
 function Image(stringName, filePath, description) {
   this.stringName = stringName;
@@ -69,13 +69,11 @@ function displayImages() {
 displayImages();
 
 function harvestClicks(event) {
-  console.log(event);
   if(event.target.nodeName === 'IMG') {
     for(var i = 0; i < allImageObjects.length; i++) {
       if(String(event.target.id) === allImageObjects[i].stringName && grandTotalClicks < clickLimit) {
         allImageObjects[i].numClicks++;
         grandTotalClicks++;
-        console.log(grandTotalClicks);
         displayImages();
       } else if (grandTotalClicks === clickLimit) {
         countClicks.removeEventListener('click', harvestClicks);
@@ -87,6 +85,8 @@ function harvestClicks(event) {
           li.innerText = allImageObjects[i].numClicks + ' votes for ' + allImageObjects[i].stringName;
           ul.appendChild(li);
         }
+        chartMaker();
+        var myChart = new Chart(ctx, chartOptions);
       }
     }
   }
@@ -106,33 +106,30 @@ list.innerText = productList[i].name + ' was not displayed.';
 }
 theList.appendChild(list);*/
 
-votesArray = [];
-labelArray = [];
+//if (allImageObjects[i].numClicks !== 0)
+
+var votesArray = [];
+var labelArray = [];
+var chartMaker = function () {
+  for (var i = 0; i < allImageObjects.length; i++) {
+    labelArray.push(allImageObjects[i].stringName);
+    votesArray.push(allImageObjects[i].numClicks);
+  }
+};
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-
-var myChart = new Chart(ctx, {
+console.log(votesArray);
+console.log(labelArray);
+var chartOptions = {
   type: 'bar',
   data: {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: labelArray,
     datasets: [{
       label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'],
-      borderWidth: 1
+      data: votesArray,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255,99,132,1)',
+      borderWidth: 2
     }]
   },
   options: {
@@ -144,4 +141,7 @@ var myChart = new Chart(ctx, {
       }]
     }
   }
-});
+};
+
+//css magic
+//div chart for chart hidden by default, show when want to display:
