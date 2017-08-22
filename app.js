@@ -33,9 +33,13 @@ var cthulhu = new Image('cthulhu', 'assets/cthulhu.jpg', 'A great statue.');
 function displayImages() {
   for(var i = 0; i < 3; i++) {
     var ranNum = Math.floor(Math.random() * allImageObjects.length - 1) + 1;
-    var placeholder = allImageObjects[ranNum].imgGenerator();
-    currentImages.push(placeholder);
-  }
-}
+    if (currentImages.includes(ranNum)) {
+      break;
+    } else {
+      currentImages.push(ranNum);
+      allImageObjects[ranNum].imgGenerator();
+    }
+  } 
+};
 
 displayImages();
