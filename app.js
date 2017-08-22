@@ -27,7 +27,7 @@ var bag = new Image('bag', 'assets/bag.jpg', 'A great looking bag.');
 var banana = new Image('banana', 'assets/banana.jpg', 'Banana slicer.');
 var bathroom = new Image('bathroom', 'assets/bathroom.jpg', 'Something for your bathroom.');
 var boots = new Image('boots', 'assets/boots.jpg', 'Sweet boots!');
-var breakfast = new Image('breatfast', 'assets/breakfast.jpg', 'Revolutionize your breakfast!');
+var breakfast = new Image('breakfast', 'assets/breakfast.jpg', 'Revolutionize your breakfast!');
 var bubblegum = new Image('bubblegum', 'assets/bubblegum.jpg', 'Delicious bubblegum.');
 var chair = new Image('chair', 'assets/chair.jpg', 'A comfortable chair.');
 var cthulhu = new Image('cthulhu', 'assets/cthulhu.jpg', 'A great statue.');
@@ -40,6 +40,8 @@ function ranNum() {
 };
 
 function displayImages() {
+  var targetArea = document.getElementById('photo_area');
+  targetArea.innerHTML = '';
   var currentImages = [];
   for(var i = 0; i < 3; i++) {
     var item = allImageObjects[ranNum()];
@@ -57,17 +59,22 @@ displayImages();
 
 function harvestClicks(event) {
   event.preventDefault();
-  //var whatever = event.target.id;
   console.log(event);
   if(event.target.nodeName === 'IMG') {
-    for(var i = 0; i < allImageObjects.length; i++){
-      if (String(event.target.id) === allImageObjects[i].stringName) {
+    for(var i = 0; i < allImageObjects.length; i++) {
+      if(String(event.target.id) === allImageObjects[i].stringName && grandTotalClicks < 25) {
         allImageObjects[i].numClicks++;
         grandTotalClicks++;
+        console.log(grandTotalClicks);
+        displayImages();
+      } else {
+        countClicks.removeEventListener('click', harvestClicks, true);
       }
     }
   }
-}
+};
 
 var countClicks = document.getElementById('photo_area');
 countClicks.addEventListener('click', harvestClicks);
+
+displayImages();
