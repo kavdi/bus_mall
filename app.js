@@ -3,6 +3,7 @@
 var allImageObjects = [];
 var previousImages = [];
 var currentImages = [];
+var grandTotalClicks = 0;
 
 function Image(stringName, filePath, description) {
   this.stringName = stringName;
@@ -56,7 +57,16 @@ displayImages();
 
 function harvestClicks(event) {
   event.preventDefault();
-  var feedbackElement = document.getElementById('img');
+  //var whatever = event.target.id;
+  console.log(event);
+  if(event.target.nodeName === 'IMG') {
+    for(var i = 0; i < allImageObjects.length; i++){
+      if (String(event.target.id) === allImageObjects[i].stringName) {
+        allImageObjects[i].numClicks++;
+        grandTotalClicks++;
+      }
+    }
+  }
 }
 
 var countClicks = document.getElementById('photo_area');
