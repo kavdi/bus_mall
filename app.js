@@ -16,6 +16,7 @@ function Image(stringName, filePath, description) {
     var img = document.createElement('img');
     img.setAttribute('alt', this.desc);
     img.setAttribute('src', this.filePath);
+    img.setAttribute('id', this.stringName);
     img.setAttribute('width', '25%');
     area.appendChild(img);
   };
@@ -52,3 +53,12 @@ function displayImages() {
   previousImages = currentImages;
 };
 displayImages();
+
+function harvestClicks(event) {
+  event.preventDefault();
+  var feedbackElement = document.getElementById('img');
+}
+
+
+var countClicks = document.getElementById('photo_area');
+countClicks.addEventListener('click', harvestClicks);
