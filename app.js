@@ -3,7 +3,7 @@
 var allImageObjects = [];
 var previousImages = [];
 var currentImages = [];
-var grandTotalClicks = 0;
+var grandTotalClicks = 25;
 
 function Image(stringName, filePath, description) {
   this.stringName = stringName;
@@ -18,7 +18,7 @@ function Image(stringName, filePath, description) {
     img.setAttribute('alt', this.desc);
     img.setAttribute('src', this.filePath);
     img.setAttribute('id', this.stringName);
-    img.setAttribute('width', '25%');
+    img.setAttribute('width', '30%');
     area.appendChild(img);
   };
 }
@@ -42,7 +42,7 @@ var tauntaun = new Image('tauntaun', 'assets/tauntaun.jpg', 'A thing.');
 var unicorn = new Image('unicorn', 'assets/unicorn.jpg', 'Killer unicorn.');
 var usb = new Image('usb', 'assets/usb.gif', 'The best usb.');
 var water_can = new Image('water-can', 'assets/water-can.jpg', 'Hydrating water.');
-var wine_glass = new Image('usb', 'assets/wine-glass.jpg', 'The greatest wine glass.');
+var wine_glass = new Image('wine-glass', 'assets/wine-glass.jpg', 'The greatest wine glass.');
 
 function ranNum() {
   return Math.floor(Math.random() * allImageObjects.length);
@@ -64,20 +64,20 @@ function displayImages() {
   }
   previousImages = currentImages;
 };
+
 displayImages();
 
 function harvestClicks(event) {
-  event.preventDefault();
   console.log(event);
   if(event.target.nodeName === 'IMG') {
     for(var i = 0; i < allImageObjects.length; i++) {
-      if(String(event.target.id) === allImageObjects[i].stringName && grandTotalClicks < 25) {
+      if(String(event.target.id) === allImageObjects[i].stringName && grandTotalClicks < 3) {
         allImageObjects[i].numClicks++;
         grandTotalClicks++;
         console.log(grandTotalClicks);
         displayImages();
-      } else if (grandTotalClicks === 25) {
-        countClicks.removeEventListener('click', harvestClicks, true);
+      } else if (grandTotalClicks === 3) {
+        countClicks.removeEventListener('click', harvestClicks);
         var listArea = document.getElementById('results');
         var ul = document.createElement('ul');
         listArea.appendChild(ul);
@@ -95,3 +95,12 @@ var countClicks = document.getElementById('photo_area');
 countClicks.addEventListener('click', harvestClicks);
 
 displayImages();
+
+/* percentage of clicks vs time shown
+if (productList[i].displayed > 0) {
+list.innerText = (productlist[i].clivks / productlist[i].clicks * 100)
+}
+else {
+list.innerText = productList[i].name + ' was not displayed.';
+}
+theList.appendChild(list);*/
