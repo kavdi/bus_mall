@@ -59,6 +59,5 @@ function harvestClicks(event) {
   var feedbackElement = document.getElementById('img');
 }
 
-
 var countClicks = document.getElementById('photo_area');
 countClicks.addEventListener('click', harvestClicks);
