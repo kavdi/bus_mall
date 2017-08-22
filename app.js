@@ -34,6 +34,15 @@ var cthulhu = new Image('cthulhu', 'assets/cthulhu.jpg', 'A great statue.');
 var dogduck = new Image('dog-duck', 'assets/dog-duck.jpg', 'A great looking dog-duck.');
 var dragon = new Image('dragon', 'assets/dragon.jpg', 'A great dragon.');
 var pen = new Image('pen', 'assets/pen.jpg', 'A great pen.');
+var pet_sweep = new Image('pet-sweep', 'assets/pet-sweep.jpg', 'A super pet sweep.');
+var scissors = new Image('scissors', 'assets/scissors.jpg', 'Cut stuff.');
+var shark = new Image('shark', 'assets/shark.jpg', 'Comfy shark.');
+var sweep = new Image('sweep', 'assets/sweep.png', 'A nice sweep.');
+var tauntaun = new Image('tauntaun', 'assets/tauntaun.jpg', 'A thing.');
+var unicorn = new Image('unicorn', 'assets/unicorn.jpg', 'Killer unicorn.');
+var usb = new Image('usb', 'assets/usb.gif', 'The best usb.');
+var water_can = new Image('water-can', 'assets/water-can.jpg', 'Hydrating water.');
+var wine_glass = new Image('usb', 'assets/wine-glass.jpg', 'The greatest wine glass.');
 
 function ranNum() {
   return Math.floor(Math.random() * allImageObjects.length);
@@ -67,8 +76,16 @@ function harvestClicks(event) {
         grandTotalClicks++;
         console.log(grandTotalClicks);
         displayImages();
-      } else {
+      } else if (grandTotalClicks === 25) {
         countClicks.removeEventListener('click', harvestClicks, true);
+        var listArea = document.getElementById('results');
+        var ul = document.createElement('ul');
+        listArea.appendChild(ul);
+        for(var i = 0; i < allImageObjects.length; i++) {
+          var li = document.createElement('li');
+          li.innerText = allImageObjects[i].numClicks + ' votes for ' + allImageObjects[i].stringName;
+          ul.appendChild(li);
+        }
       }
     }
   }
