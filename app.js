@@ -83,10 +83,11 @@ function harvestClicks(event) {
         for(var i = 0; i < allImageObjects.length; i++) {
           var li = document.createElement('li');
           li.innerText = allImageObjects[i].numClicks + ' votes for ' + allImageObjects[i].stringName;
-          ul.appendChild(li);
+          // ul.appendChild(li);
         }
         chartMaker();
         var myChart = new Chart(ctx, chartOptions);
+        debugger;
       }
     }
   }
@@ -96,17 +97,6 @@ var countClicks = document.getElementById('photo_area');
 countClicks.addEventListener('click', harvestClicks);
 
 displayImages();
-
-/* percentage of clicks vs time shown
-if (productList[i].displayed > 0) {
-list.innerText = (productlist[i].clivks / productlist[i].clicks * 100)
-}
-else {
-list.innerText = productList[i].name + ' was not displayed.';
-}
-theList.appendChild(list);*/
-
-//if (allImageObjects[i].numClicks !== 0)
 
 var votesArray = [];
 var labelArray = [];
@@ -119,7 +109,7 @@ var chartMaker = function () {
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var chartOptions = {
-  type: 'bar',
+  type: 'horizontalBar',
   data: {
     labels: labelArray,
     datasets: [{
@@ -140,6 +130,3 @@ var chartOptions = {
     }
   }
 };
-
-//css magic
-//div chart for chart hidden by default, show when want to display:
