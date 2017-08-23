@@ -61,6 +61,7 @@ function displayImages() {
     } else {
       currentImages.push(item);
       item.imgGenerator();
+      //allImageObjects current index number numdisplay++;
     }
   }
   previousImages = currentImages;
@@ -77,17 +78,9 @@ function harvestClicks(event) {
         displayImages();
       } else if (grandTotalClicks === clickLimit) {
         countClicks.removeEventListener('click', harvestClicks);
-        var listArea = document.getElementById('results');
-        var ul = document.createElement('ul');
-        listArea.appendChild(ul);
-        for(var i = 0; i < allImageObjects.length; i++) {
-          var li = document.createElement('li');
-          li.innerText = allImageObjects[i].numClicks + ' votes for ' + allImageObjects[i].stringName;
-          // ul.appendChild(li);
-        }
         chartMaker();
         var myChart = new Chart(ctx, chartOptions);
-        debugger;
+        break;
       }
     }
   }
