@@ -4,7 +4,7 @@ var allImageObjects = [];
 var previousImages = [];
 var currentImages = [];
 var grandTotalClicks = 0;
-var clickLimit = 10;
+var clickLimit = 25;
 
 function Image(stringName, filePath, description) {
   this.stringName = stringName;
@@ -118,8 +118,6 @@ var chartMaker = function () {
 };
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-console.log(votesArray);
-console.log(labelArray);
 var chartOptions = {
   type: 'bar',
   data: {
@@ -127,8 +125,8 @@ var chartOptions = {
     datasets: [{
       label: '# of Votes',
       data: votesArray,
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255,99,132,1)',
+      backgroundColor: 'rgba(11, 140, 97, 0.5)',
+      borderColor: 'rgba(11, 140, 97, 1)',
       borderWidth: 2
     }]
   },
