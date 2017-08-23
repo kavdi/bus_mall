@@ -60,8 +60,8 @@ function displayImages() {
       continue;
     } else {
       currentImages.push(item);
+      item.numShown++;
       item.imgGenerator();
-      //allImageObjects current index number numdisplay++;
     }
   }
   previousImages = currentImages;
