@@ -1,0 +1,10 @@
+#canvas {
+  margin: auto;
+  max-height: 60em;
+  max-width: 60em;
+}
+
+img {
+  width: 33%;
+  height:33%;
+}
